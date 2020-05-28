@@ -1,4 +1,6 @@
 
+from terminaltables import AsciiTable
+
 def main():
     octal_equivalents = [256,128,64,32,16,8,4,2,1]
     ip_blocks = 4
@@ -9,13 +11,25 @@ def main():
     last_ip = "192.168.10.2"
     subnet_mask = "255.255.255.254"
 
-    ip_address = input("IP Address:")
-    cidrs = list(map(int, input("CIDR/s: ").split()))
+    table_data = [
+        ['CIDRs', '/24','/27','/30'],
+        ['Subnet', '255.255.255.255'],
+        ['Network ID ', '192.168.2.142'],
+        ['Broadcast ID ', '192.168.2.142'],
+        ['First IP', '192.168.2.142'],
+        ['Last IP ', '192.168.2.142']
+    ]
 
-    print("IP Address: ",ip_address)
-    print("CIDRs: ", cidrs)
+    table = AsciiTable(table_data)
+    print(table.table)
 
-    print(convert_ip_to_binary(ip_address))
+    # ip_address = input("IP Address:")
+    # cidrs = list(map(int, input("CIDR/s: ").split()))
+
+    # print("IP Address: ",ip_address)
+    # print("CIDRs: ", cidrs)
+
+    # print(convert_ip_to_binary(ip_address))
     
     
     # for cidr in cidrs:
@@ -38,22 +52,34 @@ def main():
 
 def convert_ip_to_binary(ip_address):
 
-    octal_equivalents = [128, 64, 32, 16, 8, 4, 2, 1]
+    # octal_equivalents = [128, 64, 32, 16, 8, 4, 2, 1]
+    # octets = ip_address.split(".")
+    # x = 0
+    # binary_equivalent = []
 
-    for octet in ip_address.split("."):
+    # for i in range(len(octets)):
+    #     if int(octets) > octal_equivalents[i]:
+    #     for y in range(0,8):
 
-        value = int(octet)
+    #         temp = octal_equivalents[y] + octal_equivalents[y+1]
 
-        for x in octal_equivalents:
+    #         if temp == int(octets[i]):
+
+    #         if temp < int(octets[i]):
+    #             y+= 1
+
+       
+
+        # for x in octal_equivalents:
             
-            for y in octal_equivalents:
+        #     for y in octal_equivalents:
 
-                if x + y > int(octet):
-                    continue
-                if x + y <= int(octet):
-                    value = x + y
+        #         if x + y > int(octet):
+        #             continue
+        #         if x + y <= int(octet):
+        #             value = x + y
         
-        print("value is : " ,value)
+        # print("value is : " ,value)
 
 
        
@@ -74,9 +100,8 @@ def convert_ip_to_binary(ip_address):
 
         #     dividend = quotient
         
-        print("Remainder for octet " + octet  + ":", remainder)
-        
-    return ip_address
+        # print("Remainder for octet " + octet  + ":", remainder)
+        return ip_address
 
 
 main()
